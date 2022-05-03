@@ -1,6 +1,6 @@
-package SinabroLocal.LocalSina.domain.Repository;
+package Sinabro.sinabro.domain.Repository;
 
-import SinabroLocal.LocalSina.domain.Voca;
+import Sinabro.sinabro.domain.Voca;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

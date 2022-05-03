@@ -1,7 +1,8 @@
-package SinabroLocal.LocalSina.Controller;
+package Sinabro.sinabro.Controller;
 
-import SinabroLocal.LocalSina.domain.Repository.VocaRepository;
-import SinabroLocal.LocalSina.domain.Voca;
+
+import Sinabro.sinabro.domain.Repository.VocaRepository;
+import Sinabro.sinabro.domain.Voca;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -9,13 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/voca")
 @RequiredArgsConstructor
 public class VocaController {
     private final VocaRepository vocaRepository;
 
     // @ResponseBody json 파일 전달같이 일반적인 변수 전달 아닐 시 사용
+
     @GetMapping("/problem")
     public String userProblem(@RequestParam() String publisher, @RequestParam() String subject, @RequestParam int chapter){
         log.info("subject={}, publisher={}, chapter={}",subject,publisher,chapter);

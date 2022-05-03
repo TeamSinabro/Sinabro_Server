@@ -1,4 +1,4 @@
-package SinabroLocal.LocalSina.domain;
+package Sinabro.sinabro.domain;
 
 
 import lombok.Getter;
