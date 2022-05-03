@@ -1,6 +1,7 @@
-package SinabroLocal.LocalSina.domain.Repository;
+package Sinabro.sinabro.domain.Repository;
 
-import SinabroLocal.LocalSina.domain.Voca;
+import Sinabro.sinabro.domain.Voca;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class VocaRepository {
     private static long sequence = 0L; //static
 
     public Voca save(Voca voca){
+        //@Query(value="select vocaname from sinabro.sentence where vocaname='기부'",nativeQuery = true)
         voca.setVid(++sequence);
         store.put(voca.getVid(),voca);
         return voca;
