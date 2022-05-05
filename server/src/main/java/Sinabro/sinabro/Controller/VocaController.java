@@ -1,6 +1,7 @@
 package Sinabro.sinabro.Controller;
 
 
+import Sinabro.sinabro.domain.Repository.VocaRepository;
 import Sinabro.sinabro.domain.VocaLearningService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @RestController
@@ -17,7 +19,7 @@ import java.util.List;
 @RequestMapping("/voca")
 @RequiredArgsConstructor
 public class VocaController {
-
+    private final VocaRepository vocaRepository;
     private VocaLearningService vocaLearningService;
     @ResponseBody
     @GetMapping("/problem")
@@ -26,15 +28,36 @@ public class VocaController {
 
 
         log.info("subject={}, publisher={}, chapter={}",subject,publisher,chapter);
-// DB -> 데이터 -> Voca Question 랜덤 -> 데이터 -> 클라
-       // List<String> optionList =vocaLearningService.generateProblem(publisher, subject);
 
-        //String answer= optionList.get(0);
+        int maximumBound=vocaRepository.findByVocaCount(publisher,subject);
+
+        log.info("maximumBound={}",maximumBound);
+
+        Random random=new Random();
+        List<Integer> problemVid=new ArrayList<>();
+        int i=0;
+        while(i<5){
+            log.info("while문 진입");
+            int temp=random.nextInt(maximumBound);
+            System.out.println("temp = " + temp);
+            if(problemVid.contains(temp)) continue;
+            problemVid.add(1);
+            problemVid.add(temp);
+            break;
+            //i++;
+        }
+        log.info("while문 끝");
+        List<String> vocaList=vocaRepository.findByProblem(problemVid);
+
+        log.info("어휘학습서비스 실행 완");
+
+        String answer= vocaList.get(0);
+        log.info("answer={}",answer);
 
         //model.addAttribute("problem",problem);
         //model.addAttribute("vocaDefinition",vocaDefinition);
-        //model.addAttribute("optionList",optionList);
-        //model.addAttribute("answer",answer);
+        model.addAttribute("optionList",vocaList);
+        model.addAttribute("answer",answer);
         //model.addAttribute("answerSource",answerSource);
         return "ok"; //http 메세지 바디에 바로 입력
    }

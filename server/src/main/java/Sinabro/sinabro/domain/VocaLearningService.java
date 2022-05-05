@@ -2,6 +2,7 @@ package Sinabro.sinabro.domain;
 
 import Sinabro.sinabro.domain.Repository.VocaRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
@@ -29,10 +30,14 @@ public class VocaLearningService {
         List<Integer> problemVid=new ArrayList<>();
         int i=0;
         while(i<5){
+            System.out.println("문제생성메소드");
             int temp=random.nextInt(maximumBound);
+            System.out.println("temp = " + temp);
             if(problemVid.contains(temp)) continue;
+            problemVid.add(1);
             problemVid.add(temp);
-            i++;
+            break;
+            //i++;
         }
         List<String> vocaList=vocaRepository.findByProblem(problemVid);
         return vocaList;
