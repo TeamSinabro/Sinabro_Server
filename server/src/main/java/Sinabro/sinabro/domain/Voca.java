@@ -1,62 +1,54 @@
 package Sinabro.sinabro.domain;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter @Setter
 @Entity
 @Table(name = "voca_table")
 public class Voca {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long vid;
-    private String word;
-    private String publisher;
-    private String subject;
-    private String chapter;
+    @Column
+    private String voca;
+    @Column
+    private Long sid; //문장 고유번호
 
-    public Voca(Long vid){
+
+    public Voca(){
     }
 
-    public Voca(String word, String publisher, String subject) {
-        this.word = word;
-        this.publisher = publisher;
-        this.subject = subject;
+    public Voca(String voca) {
+        this.voca = voca;
     }
 
-    public String getWord() {
-        return word;
+    public Voca(String voca, Long sid) {
+        this.voca = voca;
+        this.sid = sid;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public Long getVid() {
+        return vid;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getVoca() {
+        return voca;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setVoca(String voca) {
+        this.voca = voca;
     }
 
-    public String getSubject() {
-        return subject;
+    public Long getSid() {
+        return sid;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getChapter() {
-        return chapter;
-    }
-
-    public void setChapter(String chapter) {
-        this.chapter = chapter;
+    public void setSid(Long sid) {
+        this.sid = sid;
     }
 }

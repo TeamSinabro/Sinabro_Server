@@ -5,6 +5,7 @@ import Sinabro.sinabro.domain.Repository.VocaRepository;
 import Sinabro.sinabro.domain.VocaLearningService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,27 +20,26 @@ import java.util.Random;
 @RequestMapping("/voca")
 @RequiredArgsConstructor
 public class VocaController {
+    @Autowired //스프링부트가 미리 생성해 놓은 객체를 가져다가 연결
     private final VocaRepository vocaRepository;
-    private VocaLearningService vocaLearningService;
+
     @ResponseBody
     @GetMapping("/problem")
-    public String userProblem(@RequestParam() String publisher, @RequestParam() String subject,
+    public Model userProblem(@RequestParam() String publisher, @RequestParam() String subject,
                               @RequestParam int chapter, Model model){
-
 
         log.info("subject={}, publisher={}, chapter={}",subject,publisher,chapter);
 
         int maximumBound=vocaRepository.findByVocaCount(publisher,subject);
-
+        //다른 출판사, 과목 -> VID 구분 못함. (생각하기)
         log.info("maximumBound={}",maximumBound);
-
+    
         Random random=new Random();
         List<Integer> problemVid=new ArrayList<>();
         int i=0;
         while(i<5){
             log.info("while문 진입");
             int temp=random.nextInt(maximumBound);
-            System.out.println("temp = " + temp);
             if(problemVid.contains(temp)) continue;
             problemVid.add(1);
             problemVid.add(temp);
@@ -59,8 +59,12 @@ public class VocaController {
         model.addAttribute("optionList",vocaList);
         model.addAttribute("answer",answer);
         //model.addAttribute("answerSource",answerSource);
-        return "ok"; //http 메세지 바디에 바로 입력
+        return model; //http 메세지 바디에 바로 입력
    }
+   // 어휘-출판사-과목을 이용해 몇 챕터에서 이 단어 나오는지 확인
+    public String findByChapter(String voca, String publisher,String subject){
+        return vocaRepository.findByVocaAndPublisherAndSubject(voca,publisher,subject);
+    }
 /*
     @GetMapping("/answer")
     public String userAnswer(){
