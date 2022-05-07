@@ -30,7 +30,7 @@ public class VocaController {
 
         log.info("subject={}, publisher={}, chapter={}",subject,publisher,chapter);
 
-        int maximumBound=vocaRepository.findByVocaCount(publisher,subject);
+       /* int maximumBound=vocaRepository.findByVocaCount(publisher,subject);
         //다른 출판사, 과목 -> VID 구분 못함. (생각하기)
         log.info("maximumBound={}",maximumBound);
     
@@ -58,14 +58,14 @@ public class VocaController {
         //model.addAttribute("vocaDefinition",vocaDefinition);
         model.addAttribute("optionList",vocaList);
         model.addAttribute("answer",answer);
-        //model.addAttribute("answerSource",answerSource);
+        //model.addAttribute("answerSource",answerSource);*/
         return model; //http 메세지 바디에 바로 입력
    }
    // 어휘-출판사-과목을 이용해 몇 챕터에서 이 단어 나오는지 확인
-    public String findByChapter(String voca, String publisher,String subject){
+   /* public String findByChapter(String voca, String publisher,String subject){
         return vocaRepository.findByVocaAndPublisherAndSubject(voca,publisher,subject);
     }
-/*
+
     @GetMapping("/answer")
     public String userAnswer(){
         return "/voca"; //아직 못 정함 --> ?어디로 가는지..?
