@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bid;
+    private int bid;
     @Column
     private String publisher;
     @Column

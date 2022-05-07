@@ -12,11 +12,11 @@ import javax.persistence.*;
 public class Sentence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sid;
+    private int sid;
     @Column
     private String sentence;
     @Column
-    private Long bid;
+    private int bid;
 
     public Sentence() {
     }
@@ -24,7 +24,16 @@ public class Sentence {
         this.sentence = sentence;
     }
 
-    public Long getSid() {
+    public Sentence(int sid) {
+        this.sid = sid;
+    }
+
+    public Sentence(String sentence, int bid) {
+        this.sentence = sentence;
+        this.bid = bid;
+    }
+
+    public int getSid() {
         return sid;
     }
 
@@ -36,11 +45,11 @@ public class Sentence {
         this.sentence = sentence;
     }
 
-    public Long getBid() {
+    public int getBid() {
         return bid;
     }
 
-    public void setBid(Long bid) {
+    public void setBid(int bid) {
         this.bid = bid;
     }
 }

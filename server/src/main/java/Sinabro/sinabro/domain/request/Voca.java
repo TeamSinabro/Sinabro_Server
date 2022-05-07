@@ -1,4 +1,4 @@
-package Sinabro.sinabro.domain;
+package Sinabro.sinabro.domain.request;
 
 
 import lombok.Builder;
@@ -13,42 +13,45 @@ import javax.persistence.*;
 public class Voca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long vid;
+    private int vid;
     @Column
     private String voca;
     @Column
-    private Long sid; //문장 고유번호
-
+    private int sid; //문장 고유번호
+    @Column
+    private String morpheme;
 
     public Voca(){
     }
-
     public Voca(String voca) {
         this.voca = voca;
     }
 
-    public Voca(String voca, Long sid) {
+    public Voca(String voca, int sid, String morpheme) {
         this.voca = voca;
         this.sid = sid;
+        this.morpheme = morpheme;
     }
 
-    public Long getVid() {
+    public int getVid() {
         return vid;
     }
-
     public String getVoca() {
         return voca;
     }
-
     public void setVoca(String voca) {
         this.voca = voca;
     }
-
-    public Long getSid() {
+    public int getSid() {
         return sid;
     }
-
-    public void setSid(Long sid) {
+    public void setSid(int sid) {
         this.sid = sid;
+    }
+    public String getMorpheme() {
+        return morpheme;
+    }
+    public void setMorpheme(String morpheme) {
+        this.morpheme = morpheme;
     }
 }

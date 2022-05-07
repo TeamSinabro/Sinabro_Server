@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface SentenceRepository extends JpaRepository<Sentence, Long> {
-    @Query(value = "select sentence from sentence_table where bid=:bid",nativeQuery = true)
-    public List<String> findBySentence(int bid);
+    @Query()
+    public List<Sentence> findByBid(int bid);
 
 
 }

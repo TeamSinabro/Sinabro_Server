@@ -1,9 +1,8 @@
 package Sinabro.sinabro.domain.Repository;
 
-import Sinabro.sinabro.domain.Voca;
+import Sinabro.sinabro.domain.request.Voca;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -18,6 +17,12 @@ public interface VocaRepository extends JpaRepository<Voca, Long> {
 
     @Query(value = "select voca from voca_table where vid in :vid",nativeQuery = true)
     List<String> findByProblem(List<Integer> vid);
+
+    @Query
+    List<Voca> findBySid(int sid);
+
+    @Query(value = "select voca from voca_table where morpheme=:morpheme",nativeQuery = true)
+    List<String> findByMorpheme(String morpheme);
 
 
 

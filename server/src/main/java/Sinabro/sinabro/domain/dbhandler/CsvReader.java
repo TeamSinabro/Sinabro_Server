@@ -5,9 +5,9 @@ import java.util.*;
 
 public class CsvReader {
 
-    public List<List<String>> readCSV() {
+    public List<List<String>> readCSV(String path) {
         List<List<String>> csvList = new ArrayList<List<String>>();
-        File csv = new File("/Users/hyerim/AI융캡디2/DB/지학사_사회1_220506.csv");//csv파일이 저장된 경로 넣어주기!!
+        File csv = new File(path);
         BufferedReader br = null;
         String line = "";
         try {
