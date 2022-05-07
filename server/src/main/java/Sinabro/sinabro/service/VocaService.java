@@ -5,10 +5,10 @@ import Sinabro.sinabro.domain.response.VocaResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class VocaService {
-    private final VocaResponse vocaResponse;
+
     private final VocaRepository vocaRepository;
 
 

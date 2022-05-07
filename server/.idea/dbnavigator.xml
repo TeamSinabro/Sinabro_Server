@@ -32,9 +32,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="638d65a5-0970-4040-8c92-030e82bddb49" object-ref="consoles/Sinabro" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="638d65a5-0970-4040-8c92-030e82bddb49" />

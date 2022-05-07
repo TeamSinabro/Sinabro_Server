@@ -1,7 +1,6 @@
 package Sinabro.sinabro.Controller;
 
 
-import Sinabro.sinabro.domain.request.Voca;
 import Sinabro.sinabro.domain.response.VocaResponse;
 import Sinabro.sinabro.service.VocaService;
 import Sinabro.sinabro.util.ResponseService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/voca")
 @RequiredArgsConstructor
 public class VocaController {
-
     private final VocaService vocaService;
     private final ResponseService responseService;
     // @ResponseBody json 파일 전달같이 일반적인 변수 전달 아닐 시 사용
