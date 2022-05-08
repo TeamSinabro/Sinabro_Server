@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -26,6 +27,7 @@ public class VocaService {
 
     public VocaResponse getVocaResponse(String publisher, String subject, int chapter){
         int bid=bookRepository.findByPublisherAndSubjectAndChapter(publisher, subject, chapter);
+        log.info("bid={}",bid);
         List<Sentence> sentenceList =sentenceRepository.findByBid(bid);
         Random random=new Random();
         int index=random.nextInt(sentenceList.size()-1);
@@ -38,7 +40,18 @@ public class VocaService {
         Voca voca=vocaList.get(index);
         String answer=voca.getVoca();
         //형태소 동일한 오답 생성
-        List<String> optionList=vocaRepository.findByMorpheme(voca.getMorpheme());
+        List<String> candidateList=vocaRepository.findByMorpheme(voca.getMorpheme());
+        List<String> optionList = new ArrayList<String>();
+        int i=0;
+        while(i<3){
+            index=random.nextInt(candidateList.size()-1);
+            if(optionList.contains(candidateList.get(index))) {
+                continue;
+            }
+            optionList.add(candidateList.get(index));
+            i++;
+        }
+
         //단어 정의 -> 사전 API 사용부분
         String vocaDefinition="샘플 단어 정의가 설명되어있는 부분입니다."; // 지금 필요없기도함
         String answerSource="어떤 교과서 어떤 과목 몇 챕터 / 페이지가 표시되는 부분입니다.";

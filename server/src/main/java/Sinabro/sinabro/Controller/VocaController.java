@@ -27,7 +27,6 @@ public class VocaController {
 
         log.info("subject={}, publisher={}, chapter={}",subject,publisher,chapter);
 
-
         return responseService.getSingleResponse(vocaService.getVocaResponse(publisher, subject, chapter));
    }
 
