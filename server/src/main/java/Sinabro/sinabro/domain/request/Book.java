@@ -1,4 +1,4 @@
-package Sinabro.sinabro.domain;
+package Sinabro.sinabro.domain.request;
 
 import lombok.Getter;
 import lombok.Setter;

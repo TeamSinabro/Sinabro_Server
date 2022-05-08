@@ -3,7 +3,7 @@ package Sinabro.sinabro.service;
 import Sinabro.sinabro.domain.Repository.BookRepository;
 import Sinabro.sinabro.domain.Repository.SentenceRepository;
 import Sinabro.sinabro.domain.Repository.VocaRepository;
-import Sinabro.sinabro.domain.Sentence;
+import Sinabro.sinabro.domain.request.Sentence;
 import Sinabro.sinabro.domain.request.Voca;
 import Sinabro.sinabro.domain.response.VocaResponse;
 import lombok.RequiredArgsConstructor;

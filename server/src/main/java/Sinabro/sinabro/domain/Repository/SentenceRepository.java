@@ -1,9 +1,8 @@
 package Sinabro.sinabro.domain.Repository;
 
-import Sinabro.sinabro.domain.Sentence;
+import Sinabro.sinabro.domain.request.Sentence;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

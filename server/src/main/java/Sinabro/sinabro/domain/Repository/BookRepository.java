@@ -1,11 +1,8 @@
 package Sinabro.sinabro.domain.Repository;
 
-import Sinabro.sinabro.domain.Book;
-import Sinabro.sinabro.domain.request.Voca;
+import Sinabro.sinabro.domain.request.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 

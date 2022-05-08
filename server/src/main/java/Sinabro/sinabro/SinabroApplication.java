@@ -3,17 +3,10 @@ package Sinabro.sinabro;
 
 import Sinabro.sinabro.domain.Repository.SentenceRepository;
 import Sinabro.sinabro.domain.Repository.VocaRepository;
-import Sinabro.sinabro.domain.Sentence;
-import Sinabro.sinabro.domain.request.Voca;
-import Sinabro.sinabro.domain.dbhandler.CsvReader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
