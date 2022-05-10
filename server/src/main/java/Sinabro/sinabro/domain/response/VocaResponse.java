@@ -7,13 +7,9 @@ import java.util.List;
 @Data
 public class VocaResponse {
     private  String problem;
-
     private  String vocaDefinition;
-
     private  List<String> optionList;
-
     private  String answer;
-
     private  String answerSource;
 
 

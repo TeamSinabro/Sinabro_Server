@@ -5,6 +5,7 @@ import Sinabro.sinabro.domain.Repository.SentenceRepository;
 import Sinabro.sinabro.domain.Repository.VocaRepository;
 import Sinabro.sinabro.domain.request.Sentence;
 import Sinabro.sinabro.domain.request.Voca;
+import Sinabro.sinabro.domain.response.PronunciationResponse;
 import Sinabro.sinabro.domain.response.VocaResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,19 +25,23 @@ public class VocaService {
     private final VocaRepository vocaRepository;
     private final BookRepository bookRepository;
     private final SentenceRepository sentenceRepository;
+    private Random random=new Random();
 
-    public VocaResponse getVocaResponse(String publisher, String subject, int chapter){
+    public Sentence getProblem(String publisher, String subject, int chapter){
         int bid=bookRepository.findByPublisherAndSubjectAndChapter(publisher, subject, chapter);
         log.info("bid={}",bid);
         List<Sentence> sentenceList =sentenceRepository.findByBid(bid);
-        Random random=new Random();
         int index=random.nextInt(sentenceList.size()-1);
         Sentence sentence=sentenceList.get(index);
+        return sentence;
+    }
+    public VocaResponse getVocaResponse(String publisher, String subject, int chapter){
 
+        Sentence sentence=getProblem(publisher,  subject,  chapter);
         String problem= sentence.getSentence();
         //문장에 있는 단어 랜덤 뽑기
         List<Voca> vocaList=vocaRepository.findBySid(sentence.getSid());
-        index=random.nextInt(vocaList.size()-1);
+        int index=random.nextInt(vocaList.size()-1);
         Voca voca=vocaList.get(index);
         String answer=voca.getVoca();
         //형태소 동일한 오답 생성
@@ -58,6 +63,14 @@ public class VocaService {
 
         VocaResponse vocaResponse=new VocaResponse(problem, vocaDefinition, optionList,  answer,  answerSource);
         return vocaResponse;
+        //언어 유사도 분석??  좋아하다 좋아한
+        //가다 갔다 ..?
+    }
+
+    public PronunciationResponse getpronunciationResponse(String publisher, String subject, int chapter){
+        Sentence sentence=getProblem(publisher,  subject,  chapter);
+        PronunciationResponse pronunciationResponse=new PronunciationResponse(sentence.getSentence());
+        return pronunciationResponse;
     }
 
     /*public VocaResponse getVocaResponse(String publisher, String subject, int chapter){
