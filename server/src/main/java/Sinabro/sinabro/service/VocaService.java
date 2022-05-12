@@ -1,5 +1,6 @@
 package Sinabro.sinabro.service;
 
+import Sinabro.sinabro.api.ApiDict;
 import Sinabro.sinabro.domain.Repository.BookRepository;
 import Sinabro.sinabro.domain.Repository.SentenceRepository;
 import Sinabro.sinabro.domain.Repository.VocaRepository;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +27,7 @@ public class VocaService {
     private final VocaRepository vocaRepository;
     private final BookRepository bookRepository;
     private final SentenceRepository sentenceRepository;
+    public ApiDict apiDict=new ApiDict();
     private Random random=new Random();
 
     public Sentence getProblem(String publisher, String subject, int chapter){
@@ -47,6 +50,7 @@ public class VocaService {
         //형태소 동일한 오답 생성
         List<String> candidateList=vocaRepository.findByMorpheme(voca.getMorpheme());
         List<String> optionList = new ArrayList<String>();
+        optionList.add(answer);
         int i=0;
         while(i<3){
             index=random.nextInt(candidateList.size()-1);
@@ -56,10 +60,11 @@ public class VocaService {
             optionList.add(candidateList.get(index));
             i++;
         }
-
+        Collections.shuffle(optionList);
         //단어 정의 -> 사전 API 사용부분
-        String vocaDefinition="샘플 단어 정의가 설명되어있는 부분입니다."; // 지금 필요없기도함
+        List<String> vocaDefinition=apiDict.findeDefinition(answer); // 지금 필요없기도함
         String answerSource="어떤 교과서 어떤 과목 몇 챕터 / 페이지가 표시되는 부분입니다.";
+        //log.info("vocaDefinition={}",vocaDefinition);
 
         VocaResponse vocaResponse=new VocaResponse(problem, vocaDefinition, optionList,  answer,  answerSource);
         return vocaResponse;

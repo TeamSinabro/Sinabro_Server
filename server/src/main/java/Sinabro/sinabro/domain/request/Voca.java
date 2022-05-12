@@ -21,10 +21,8 @@ public class Voca {
     @Column
     private String morpheme;
 
+
     public Voca(){
-    }
-    public Voca(String voca) {
-        this.voca = voca;
     }
 
     public Voca(String voca, int sid, String morpheme) {
