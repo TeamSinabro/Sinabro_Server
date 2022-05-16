@@ -7,6 +7,7 @@ import Sinabro.sinabro.domain.Repository.VocaRepository;
 import Sinabro.sinabro.domain.request.Sentence;
 import Sinabro.sinabro.domain.request.Voca;
 import Sinabro.sinabro.domain.response.PronunciationResponse;
+import Sinabro.sinabro.domain.response.SearchResponse;
 import Sinabro.sinabro.domain.response.VocaResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +64,7 @@ public class VocaService {
         Collections.shuffle(optionList);
         //단어 정의 -> 사전 API 사용부분
         List<String> vocaDefinition=apiDict.findeDefinition(answer); // 지금 필요없기도함
-        String answerSource="어떤 교과서 어떤 과목 몇 챕터 / 페이지가 표시되는 부분입니다.";
+        String answerSource=voca.getApply();
         //log.info("vocaDefinition={}",vocaDefinition);
 
         VocaResponse vocaResponse=new VocaResponse(problem, vocaDefinition, optionList,  answer,  answerSource);
@@ -78,8 +79,16 @@ public class VocaService {
         return pronunciationResponse;
     }
 
-    /*public VocaResponse getVocaResponse(String publisher, String subject, int chapter){
-        return vocaRepository.findByVoca(publisher, subject, chapter);
-    }*/
+    public SearchResponse getVocaContent(String keyword){
+        List<String> vocaDefinition=apiDict.findeDefinition(keyword);
+        List<Integer> sidL=vocaRepository.findByVoca(keyword); //null일 경우 생각해보기
+        List<String> sentence=new ArrayList<String>();
+        for(int id :sidL){
+            sentence.add(sentenceRepository.findBySid(id).getSentence());
+        }
+        SearchResponse searchResponse=new SearchResponse(vocaDefinition,  sentence, "키워드 source 나오는 곳");
+        return  searchResponse;
+    }
+
 
 }

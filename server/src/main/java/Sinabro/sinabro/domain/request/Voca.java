@@ -20,6 +20,8 @@ public class Voca {
     private int sid; //문장 고유번호
     @Column
     private String morpheme;
+    @Column
+    private String apply;
 
 
     public Voca(){
@@ -29,6 +31,21 @@ public class Voca {
         this.voca = voca;
         this.sid = sid;
         this.morpheme = morpheme;
+    }
+
+    public Voca(String voca, int sid, String morpheme, String apply) {
+        this.voca = voca;
+        this.sid = sid;
+        this.morpheme = morpheme;
+        this.apply = apply;
+    }
+
+    public String getApply() {
+        return apply;
+    }
+
+    public void setApply(String apply) {
+        this.apply = apply;
     }
 
     public int getVid() {
