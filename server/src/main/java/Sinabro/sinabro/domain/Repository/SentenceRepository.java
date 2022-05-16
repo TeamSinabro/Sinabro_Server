@@ -12,6 +12,10 @@ public interface SentenceRepository extends JpaRepository<Sentence, Long> {
     @Query()
     public List<Sentence> findByBid(int bid);
 
+    @Query()
+    public Sentence findBySid(int sid);
+
+
 
 }
 //- 어휘 <- 문장  <- 교과서

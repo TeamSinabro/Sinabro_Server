@@ -3,6 +3,7 @@ package Sinabro.sinabro.Controller;
 
 import Sinabro.sinabro.domain.Repository.VocaRepository;
 import Sinabro.sinabro.domain.response.PronunciationResponse;
+import Sinabro.sinabro.domain.response.SearchResponse;
 import Sinabro.sinabro.domain.response.VocaResponse;
 import Sinabro.sinabro.service.VocaService;
 import Sinabro.sinabro.util.ResponseService;
@@ -40,14 +41,11 @@ public class VocaController {
 
         return responseService.getSingleResponse(vocaService.getpronunciationResponse(publisher, subject, chapter));
     }
-/*
-    @GetMapping("/search/{Vid}")
-    public String voca(@PathVariable Long Vid, Model model) {
-        //Voca voca=vocaRepository.findByVid(Vid);
-        //String word = voca.getWord();
-        //model.addAttribute("voca", voca);
-        //log.info("search={}",word);
-        return "/voca/search/{word}/content";  //임의로 설정
+
+    @GetMapping("/search")
+    public SingleResponse<SearchResponse> searchVoca(@RequestParam() String keyword) {
+        log.info("Searching a keyword={}",keyword);
+        return responseService.getSingleResponse(vocaService.getVocaContent(keyword));
     }
-*/
+
 }
