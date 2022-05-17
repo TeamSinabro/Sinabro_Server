@@ -8,7 +8,7 @@ import java.util.List;
 public class SearchResponse {
     private  List<String> vocaDefinition;
     private  List<String> sentence; //String으로 있어야 할거같음
-    private  String keywordSource;
+    private  List<String> keywordSource;
 
     public SearchResponse() {
     }
@@ -17,7 +17,7 @@ public class SearchResponse {
         this.vocaDefinition = vocaDefinition;
     }
 
-    public SearchResponse(List<String> vocaDefinition, List<String> sentence, String keywordSource) {
+    public SearchResponse(List<String> vocaDefinition, List<String> sentence, List<String> keywordSource) {
         this.vocaDefinition = vocaDefinition;
         this.sentence = sentence;
         this.keywordSource = keywordSource;

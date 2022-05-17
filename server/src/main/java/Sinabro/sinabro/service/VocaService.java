@@ -14,10 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -83,10 +80,29 @@ public class VocaService {
         List<String> vocaDefinition=apiDict.findeDefinition(keyword);
         List<Integer> sidL=vocaRepository.findByVoca(keyword); //null일 경우 생각해보기
         List<String> sentence=new ArrayList<String>();
-        for(int id :sidL){
-            sentence.add(sentenceRepository.findBySid(id).getSentence());
+        List<String> keywordSource=new ArrayList<String>();
+        List<Integer> trashL=new ArrayList<>();
+        int i=0;
+        int index=0;
+
+        if(sidL.size()<4){
+            for(Integer id : sidL){
+                sentence.add(sentenceRepository.findBySid(id).getSentence());
+                keywordSource.add(bookRepository.findByBid(sentenceRepository.findBySid(id).getBid()).getSource());
+            }
         }
-        SearchResponse searchResponse=new SearchResponse(vocaDefinition,  sentence, "키워드 source 나오는 곳");
+        while(i<3 & sidL.size()>3 ){
+            index=random.nextInt(sidL.size()-1);
+            if(trashL.contains(index)) {
+                continue;
+            }
+            trashL.add(index);
+            sentence.add(sentenceRepository.findBySid(sidL.get(index)).getSentence());
+            keywordSource.add(bookRepository.findByBid(sentenceRepository.findBySid(sidL.get(index)).getBid()).getSource());
+            i++;
+        }
+
+        SearchResponse searchResponse=new SearchResponse(vocaDefinition,  sentence, keywordSource);
         return  searchResponse;
     }
 

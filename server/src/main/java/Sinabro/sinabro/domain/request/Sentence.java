@@ -33,6 +33,7 @@ public class Sentence {
         this.bid = bid;
     }
 
+
     public int getSid() {
         return sid;
     }

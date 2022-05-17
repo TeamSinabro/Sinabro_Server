@@ -23,6 +23,11 @@ public class Book {
     public Book() {
     }
 
+    public String getSource(){
+        String s=this.getSubject()+" - "+this.getPublisher()+" - "+this.getChapter();
+        return s;
+    }
+
     public Book(String publisher, String subject, Long chapter) {
         this.publisher = publisher;
         this.subject = subject;
