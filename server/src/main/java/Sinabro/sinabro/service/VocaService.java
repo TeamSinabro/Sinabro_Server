@@ -42,7 +42,13 @@ public class VocaService {
         String problem= sentence.getSentence();
         //문장에 있는 단어 랜덤 뽑기
         List<Voca> vocaList=vocaRepository.findBySid(sentence.getSid());
-        int index=random.nextInt(vocaList.size()-1);
+        log.info("sentence is {}",sentence.getSentence());
+        log.info("vocaList size is {}",vocaList.size());
+        int index=0;
+        if(vocaList.size()>1)
+            index=random.nextInt(vocaList.size()-1);
+
+
         Voca voca=vocaList.get(index);
         String answer=voca.getVoca();
         //형태소 동일한 오답 생성
@@ -51,6 +57,7 @@ public class VocaService {
         optionList.add(answer);
         int i=0;
         while(i<3){
+
             index=random.nextInt(candidateList.size()-1);
             if(optionList.contains(candidateList.get(index))) {
                 continue;

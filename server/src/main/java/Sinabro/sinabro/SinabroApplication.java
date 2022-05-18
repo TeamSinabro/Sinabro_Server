@@ -21,27 +21,27 @@ import static java.lang.Integer.parseInt;
 
 @RequiredArgsConstructor
 @SpringBootApplication
-public class SinabroApplication{// implements CommandLineRunner {
+public class SinabroApplication {//implements CommandLineRunner {
 	@Autowired
 	private final VocaRepository vocaRepository;
 	private final SentenceRepository sentenceRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(SinabroApplication.class, args);
 	}
-	/*
 
+/*
 	@Override
 	public void run(String...args) throws Exception {
 		CsvReader csvReader = new CsvReader();
-		String path1="/Users/hyerim/AI융캡디2/DB/지학사_사회1_220516.csv";
-		String path2="/Users/hyerim/AI융캡디2/DB/지학사_사회1_220516_문장.csv";
+		String path1="/Users/hyerim/AI융캡디2/DB/지학사_사회1_220519_2.csv";
+		String path2="/Users/hyerim/AI융캡디2/DB/지학사_사회1_220519_2_문장.csv";
 
 		for (List<String> i : csvReader.readCSV(path2)) { //for문을 통한 전체출력
 			System.out.println(i);
 			String s = i.get(1);
 			System.out.println("s = " + s);
 			String s2=i.get(2);
-			System.out.println("s2 = " + s2);
+			//System.out.println("s2 = " + s2);
 
 			int bid = Integer.parseInt(s2);
 			Sentence sentence = new Sentence(s,bid);
