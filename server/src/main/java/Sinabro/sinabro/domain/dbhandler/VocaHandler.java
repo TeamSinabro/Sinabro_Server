@@ -30,6 +30,6 @@ public class VocaHandler implements CommandLineRunner {
             Voca voca = new Voca(temp);
             vocaRepository.save(voca);
         }*/
-        System.out.println("여기도 나와?");
+        System.out.println("TEST 시작");
     }
 }

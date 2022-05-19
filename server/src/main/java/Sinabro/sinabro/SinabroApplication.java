@@ -39,6 +39,7 @@ public class SinabroApplication {//implements CommandLineRunner {
 		for (List<String> i : csvReader.readCSV(path2)) { //for문을 통한 전체출력
 			System.out.println(i);
 			String s = i.get(1);
+			s=s.replace('/',',')
 			System.out.println("s = " + s);
 			String s2=i.get(2);
 			//System.out.println("s2 = " + s2);

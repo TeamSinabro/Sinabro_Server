@@ -67,7 +67,7 @@ public class VocaService {
         }
         Collections.shuffle(optionList);
         //단어 정의 -> 사전 API 사용부분
-        List<String> vocaDefinition=apiDict.findeDefinition(answer); // 지금 필요없기도함
+        List<String> vocaDefinition=apiDict.findeDefinition(answer);
         String answerSource=voca.getApply();
         //log.info("vocaDefinition={}",vocaDefinition);
 
