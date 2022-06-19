@@ -29,46 +29,49 @@ public class SinabroApplication {//implements CommandLineRunner {
 		SpringApplication.run(SinabroApplication.class, args);
 	}
 
-/*
-	@Override
-	public void run(String...args) throws Exception {
-		CsvReader csvReader = new CsvReader();
-		String path1="/Users/hyerim/AI융캡디2/DB/지학사_사회1_220519_2.csv";
-		String path2="/Users/hyerim/AI융캡디2/DB/지학사_사회1_220519_2_문장.csv";
 
-		for (List<String> i : csvReader.readCSV(path2)) { //for문을 통한 전체출력
-			System.out.println(i);
-			String s = i.get(1);
-			s=s.replace('/',',')
-			System.out.println("s = " + s);
-			String s2=i.get(2);
-			//System.out.println("s2 = " + s2);
+//	@Override
+//	public void run(String...args) throws Exception {
+//		CsvReader csvReader = new CsvReader();
+//		String path1="/Users/hyerim/AI융캡디2/DB/220620_index_word.csv";
+//		String path2="/Users/hyerim/AI융캡디2/DB/220620_index_sen.csv";
+//
+//		for (List<String> i : csvReader.readCSV(path2)) { //for문을 통한 전체출력
+//			//System.out.println(i);
+//			int id=Integer.parseInt(i.get(0))+1;
+//			String s = i.get(1);
+//			s=s.replace('/',',');
+//			System.out.println("s = " + s);
+//			String s2=i.get(2);
+//			//System.out.println("s2 = " + s2);
+//
+//			int bid = Integer.parseInt(s2);
+//			Sentence sentence = new Sentence(id,s,bid);
+//			sentenceRepository.save(sentence);
+//		}
 
-			int bid = Integer.parseInt(s2);
-			Sentence sentence = new Sentence(s,bid);
-			sentenceRepository.save(sentence);
-		}
 
+//		for (List<String> j : csvReader.readCSV(path1)) { //for문을 통한 전체출력
+//			String vocaname = j.get(1);
+//			String str = j.get(2);
+//			String morpheme=j.get(3);
+//			//System.out.println("morpheme = " + morpheme);
+//			List<String> applyList=new ArrayList<String>();
+//			List<String> sidList = Arrays.asList(str.replace('"','/').split("/"));
+//			if(j.size()==5){
+//				applyList= Arrays.asList(j.get(4).replace('"','/').split("/"));
+//			}
+//
+//			for(int i =0; i<sidList.size();i++){
+//				//System.out.println("sid = " + sid);
+//				Voca voca = new Voca(vocaname,parseInt(sidList.get(i)),morpheme);
+//				if(j.size()==5){
+//					voca.setApply(applyList.get(i));
+//				}
+//				vocaRepository.save(voca);
+//			}
+//		}
+//		System.out.println("check!!");
+//	}
 
-		for (List<String> j : csvReader.readCSV(path1)) { //for문을 통한 전체출력
-			String vocaname = j.get(1);
-			String str = j.get(2);
-			String morpheme=j.get(3);
-			//System.out.println("morpheme = " + morpheme);
-			List<String> applyList=new ArrayList<String>();
-			List<String> sidList = Arrays.asList(str.replace('"','/').split("/"));
-			if(j.size()==5){
-				applyList= Arrays.asList(j.get(4).replace('"','/').split("/"));
-			}
-
-			for(int i =0; i<sidList.size();i++){
-				//System.out.println("sid = " + sid);
-				Voca voca = new Voca(vocaname,parseInt(sidList.get(i)),morpheme);
-				if(j.size()==5){
-					voca.setApply(applyList.get(i));
-				}
-				vocaRepository.save(voca);
-			}
-		}
-	}*/
 }

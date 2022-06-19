@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "sentence_table")
+@Table(name = "sentence")
 public class Sentence {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY) 지금은 자동 할당 X
     private int sid;
     @Column
     private String sentence;
@@ -22,6 +22,12 @@ public class Sentence {
     }
     public Sentence(String sentence) {
         this.sentence = sentence;
+    }
+
+    public Sentence(int sid, String sentence, int bid) {
+        this.sid = sid;
+        this.sentence = sentence;
+        this.bid = bid;
     }
 
     public Sentence(int sid) {

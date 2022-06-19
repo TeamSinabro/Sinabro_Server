@@ -15,10 +15,11 @@ public interface VocaRepository extends JpaRepository<Voca, Long> {
     @Query
     List<Voca> findBySid(int sid);
 
+
     @Query(value = "select distinct voca from voca_table where morpheme=:morpheme",nativeQuery = true)
     List<String> findByMorpheme(String morpheme);
 
-    @Query(value = "select distinct sid from voca_table where voca=:voca",nativeQuery = true)
+    @Query(value = "select distinct sid from voca_table where voca=:voca ",nativeQuery = true)
     List<Integer> findByVoca(String voca);
 
 

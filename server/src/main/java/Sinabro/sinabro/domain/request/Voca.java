@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Getter @Setter
 @Entity
-@Table(name = "voca_table")
+@Table(name = "voca")
 public class Voca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +27,11 @@ public class Voca {
     public Voca(){
     }
 
+
     public Voca(String voca, int sid, String morpheme) {
         this.voca = voca;
         this.sid = sid;
         this.morpheme = morpheme;
-    }
-
-    public Voca(String voca, int sid, String morpheme, String apply) {
-        this.voca = voca;
-        this.sid = sid;
-        this.morpheme = morpheme;
-        this.apply = apply;
     }
 
     public String getApply() {
